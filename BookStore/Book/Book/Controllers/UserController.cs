@@ -122,7 +122,6 @@ namespace Book.Controllers
         {
             try
             {
-                //  var user = User.Claims.FirstOrDefault(e => e).Value;
 
 
                 if (ModelState.IsValid)

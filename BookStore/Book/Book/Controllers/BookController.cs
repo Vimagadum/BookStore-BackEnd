@@ -13,7 +13,7 @@ namespace Book.Controllers
     {
         ISession session = OpenSessionsss.OpenSession();
 
-        [Route("AddBook")]
+        [Route("Add")]
         [HttpPost]
         public HttpResponseMessage AddBook(BookModel bookModel)
         {
@@ -40,7 +40,7 @@ namespace Book.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
         }
-        [Route("UpdateBook")]
+        [Route("Update")]
         [HttpPut]
         public HttpResponseMessage UpdateBook(BookModel bookModel)
         {
@@ -105,11 +105,19 @@ namespace Book.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
         }
-        [Route("getBooks")]
+        [Route("get")]
         public List<BookModel> GetBookList()
         {
             List<BookModel> Books = session.Query<BookModel>().ToList();
             return Books;
+        }
+
+        [Route("get/id")]
+        [HttpGet]
+        public BookModel GetBookByBookId(int id)
+        {
+            var book = session.Get<BookModel>(id);
+            return book;
         }
     }
 }
