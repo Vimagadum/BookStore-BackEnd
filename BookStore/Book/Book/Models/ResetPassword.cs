@@ -7,8 +7,8 @@ namespace Book.Models
 {
     public class ResetPassword
     {
-        public virtual string newPassword { get; set; }
-        public virtual string confirmPassword { get; set; }
+        public virtual string NewPassword { get; set; }
+        public virtual string ConfrimPassword { get; set; }
 
     }
 }

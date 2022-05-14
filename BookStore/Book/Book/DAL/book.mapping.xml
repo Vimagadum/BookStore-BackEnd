@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" auto-import="true" assembly="Book" namespace="Book.Models">
+	<class name="BookModel" table="Book" dynamic-update="true">
+		<cache usage="read-write" />
+		<id name="BookId" column="BookId" type="int">
+			<generator class="native" />
+		</id>
+		<property name="BookName" />
+		<property name="AuthorName" />
+		<property name="Rating" />
+		<property name="RatingCount" />
+		<property name="DiscountPrice" />
+		<property name="ActualPrice" />
+		<property name="Description" />
+		<property name="BookImage" />
+		<property name="BookQuantity" />
+	</class>
+
+</hibernate-mapping>

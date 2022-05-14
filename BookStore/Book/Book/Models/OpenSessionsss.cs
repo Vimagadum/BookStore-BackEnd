@@ -20,7 +20,11 @@ namespace Book.Models
             var UserConfigurationFile = HttpContext.Current.Server.MapPath(@"~\DAL\user.mapping.xml");
 
             configuration.AddFile(UserConfigurationFile);
-            
+
+            var BookConfigurationFile = HttpContext.Current.Server.MapPath(@"~\DAL\book.mapping.xml");
+
+            configuration.AddFile(BookConfigurationFile);
+
 
             ISessionFactory sessionFactory = configuration.BuildSessionFactory();
 

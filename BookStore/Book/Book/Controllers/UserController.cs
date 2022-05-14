@@ -115,39 +115,49 @@ namespace Book.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
         }
-        //[Route("ResetPassword")]
-        //[HttpPost]
-        //[Authorize]
-        //public HttpResponseMessage ResetPassword(ResetPassword resetPass)
-        //{
-        //    try
-        //    {
-        //        var userId = int.Parse(JSToken.Class.FirstOrDefault(x => x.Type == "Email").Value);
+        [Route("resetPass")]
+        [HttpPut]
+
+        public HttpResponseMessage ResetPass(ResetPassword resetPass)
+        {
+            try
+            {
+                //  var user = User.Claims.FirstOrDefault(e => e).Value;
 
 
-        //        if (ModelState.IsValid)
-        //        {
-        //            List<UserModel> Users = session.Query<UserModel>().ToList();
+                if (ModelState.IsValid)
+                {
+                    List<UserModel> Users = session.Query<UserModel>().ToList();
 
+                    foreach (var user in Users)
+                    {
+                        if (user.Email == "vinayakmagadum031@gmail.com")
+                        {
 
-        //            if (resetPass.newPassword == resetPass.confirmPassword)
-        //            {
-        //                 user.Password = resetPass.confirmPassword;
+                            if (resetPass.NewPassword == resetPass.ConfrimPassword)
+                            {
+                                user.Password = resetPass.ConfrimPassword;
+                                using (ITransaction transaction = session.BeginTransaction())
+                                {
+                                    session.SaveOrUpdate(user);
+                                    transaction.Commit();
+                                }
+                                break;
+                            }
 
-        //            }
-
-
-        //            return Request.CreateResponse(HttpStatusCode.OK, "password reset successful");
-        //        }
-        //        else
-        //        {
-        //            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Error !");
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
-        //    }
-        //}
+                        }
+                    }
+                    return Request.CreateResponse(HttpStatusCode.OK, "password reset successful");
+                }
+                else
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Error !");
+                }
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+            }
+        }
     }
 }
