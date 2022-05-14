@@ -105,5 +105,11 @@ namespace Book.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
         }
+        [Route("getBooks")]
+        public List<BookModel> GetBookList()
+        {
+            List<BookModel> Books = session.Query<BookModel>().ToList();
+            return Books;
+        }
     }
 }
