@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" auto-import="true" assembly="Book" namespace="Book.Models">
+	<class name="UserModel" table="UsersRegistration" dynamic-update="true">
+		<cache usage="read-write" />
+		<id name="UserId" column="UserId" type="int">
+			<generator class="native" />
+		</id>
+		<property name="FullName" />
+		<property name="Email" />
+		<property name="Password" />
+		<property name="MobileNumber" />
+	</class>
+	
+</hibernate-mapping>
