@@ -15,7 +15,7 @@ namespace Book.Controllers
 
         [Route("AddBook")]
         [HttpPost]
-        public HttpResponseMessage RegisterUser(BookModel bookModel)
+        public HttpResponseMessage AddBook(BookModel bookModel)
         {
             try
             {
@@ -40,5 +40,44 @@ namespace Book.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
         }
+        [Route("UpdateBook")]
+        [HttpPut]
+        public HttpResponseMessage UpdateBook(BookModel bookModel)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var book = session.Get<BookModel>(bookModel.BookId);
+                    book.BookName = bookModel.BookName;
+                    book.AuthorName = bookModel.AuthorName;
+                    book.ActualPrice = bookModel.ActualPrice;
+                    book.Rating = bookModel.Rating;
+                    book.RatingCount = bookModel.RatingCount;
+                    book.Description = bookModel.Description;
+                    book.ActualPrice = bookModel.ActualPrice;
+                    book.DiscountPrice = bookModel.DiscountPrice;
+                    book.BookImage = bookModel.BookImage;
+                    book.BookQuantity = bookModel.BookQuantity;
+                    using (ITransaction transaction = session.BeginTransaction())
+                    {
+                        session.Save(book);
+                        transaction.Commit();
+                    }
+                    return Request.CreateResponse(HttpStatusCode.OK, book);
+
+
+                }
+                else
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Error !");
+                }
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+            }
+        }
+        
     }
 }
