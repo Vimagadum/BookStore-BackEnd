@@ -68,5 +68,11 @@ namespace Book.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
         }
+        [HttpGet]
+        public WishlistModel getwishlist(int id)
+        {
+            var wish = session.Get<WishlistModel>(id);
+            return wish;
+        }
     }
 }
