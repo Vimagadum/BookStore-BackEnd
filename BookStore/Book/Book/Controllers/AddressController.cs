@@ -40,6 +40,38 @@ namespace Book.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
         }
+        [HttpPut]
+        public HttpResponseMessage UpdateAddress(int AddressId, AddressModel addressModel)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var address = session.Get<AddressModel>(AddressId);
+                    address.Address = addressModel.Address;
+                    address.City = addressModel.City;
+                    address.State = addressModel.State;
+                    address.TypeId = addressModel.TypeId;
+                    address.UserId = addressModel.UserId;
 
+
+
+                    using (ITransaction transaction = session.BeginTransaction())
+                    {
+                        session.SaveOrUpdate(address);
+                        transaction.Commit();
+                    }
+                    return Request.CreateResponse(HttpStatusCode.OK, address);
+                }
+                else
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Error !");
+                }
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+            }
+        }
     }
 }
