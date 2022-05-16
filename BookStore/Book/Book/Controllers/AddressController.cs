@@ -101,5 +101,12 @@ namespace Book.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
         }
+        [Route("getAddress")]
+
+        public List<AddressModel> GetAddressList()
+        {
+            List<AddressModel> Address = session.Query<AddressModel>().ToList();
+            return Address;
+        }
     }
 }
