@@ -70,5 +70,13 @@ namespace Book.Controllers
             List<CartModel> Cart = session.Query<CartModel>().ToList();
             return Cart;
         }
+
+        //[Route("get")]
+        [HttpGet]
+        public CartModel getCart(int id)
+        {
+            var cart = session.Get<CartModel>(id);
+            return cart;
+        }
     }
 }
