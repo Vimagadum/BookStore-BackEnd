@@ -40,5 +40,10 @@ namespace Book.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
         }
+        public List<OrderModel> GetBookList()
+        {
+            List<OrderModel> orders = session.Query<OrderModel>().ToList();
+            return orders;
+        }
     }
 }
