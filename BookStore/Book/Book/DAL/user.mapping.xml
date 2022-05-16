@@ -54,5 +54,14 @@
 		<property name="TypeId"/>
 		<property name="UserId"/>
 	</class>
+	<class name="WishlistModel" table="Wishlist" dynamic-update="true">
+		<cache usage="read-write" />
+		<id name="WishlistId" column="WishlistId" type="int">
+			<generator class="native" />
+		</id>
+		<property name="UserId"/>
+		<property name="bookId"/>
+		
+	</class>
 
 </hibernate-mapping>
