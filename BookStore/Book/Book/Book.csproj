@@ -230,6 +230,7 @@
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\CartsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Controllers\WishListController.cs" />
@@ -244,6 +245,7 @@
     <Compile Include="Models\jwt.cs" />
     <Compile Include="Models\MSMQ.cs" />
     <Compile Include="Models\OpenSessionsss.cs" />
+    <Compile Include="Models\OrderModel.cs" />
     <Compile Include="Models\ResetPassword.cs" />
     <Compile Include="Models\UserLogin.cs" />
     <Compile Include="Models\UserModel.cs" />
