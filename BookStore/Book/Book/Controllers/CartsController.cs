@@ -38,19 +38,21 @@ namespace Book.Controllers
             }
         }
         [HttpDelete]
-        public HttpResponseMessage DeleteBook(int id)
+        public HttpResponseMessage DeleteCart(int id, int userId)
         {
             try
             {
                 var cart = session.Get<CartModel>(id);
-                if (cart != null)
+
+                if (cart.UserId == userId)
                 {
                     using (ITransaction transaction = session.BeginTransaction())
                     {
                         session.Delete(cart);
                         transaction.Commit();
+                        return Request.CreateResponse(HttpStatusCode.OK, "cart deleted Successfully");
                     }
-                    return Request.CreateResponse(HttpStatusCode.OK, "cart deleted Successfully");
+
                 }
                 else
                 {

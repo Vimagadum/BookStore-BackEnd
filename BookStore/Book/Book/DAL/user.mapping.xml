@@ -43,5 +43,16 @@
 		</set>-->
 
 	</class>
+	<class name="AddressModel" table="Address" dynamic-update="true">
+		<cache usage="read-write" />
+		<id name="AddressId" column="AddressId" type="int">
+			<generator class="native" />
+		</id>
+		<property name="Address"/>
+		<property name="City"/>
+		<property name="State"/>
+		<property name="TypeId"/>
+		<property name="UserId"/>
+	</class>
 
 </hibernate-mapping>

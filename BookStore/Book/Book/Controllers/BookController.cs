@@ -42,13 +42,13 @@ namespace Book.Controllers
         }
         [Route("Update")]
         [HttpPut]
-        public HttpResponseMessage UpdateBook(BookModel bookModel)
+        public HttpResponseMessage UpdateBook(int bookId,BookModel bookModel)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    var book = session.Get<BookModel>(bookModel.BookId);
+                    var book = session.Get<BookModel>(bookId);
                     book.BookName = bookModel.BookName;
                     book.AuthorName = bookModel.AuthorName;
                     book.ActualPrice = bookModel.ActualPrice;
