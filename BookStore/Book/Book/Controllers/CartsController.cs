@@ -13,7 +13,6 @@ namespace Book.Controllers
     {
         ISession session = OpenSessionsss.OpenSession();
 
-
         [HttpPost]
         public HttpResponseMessage AddToCart(CartModel cart)
         {
@@ -63,6 +62,13 @@ namespace Book.Controllers
 
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
+        }
+        //[Route("get")]
+        [HttpGet]
+        public List<CartModel> GetCartList()
+        {
+            List<CartModel> Cart = session.Query<CartModel>().ToList();
+            return Cart;
         }
     }
 }
