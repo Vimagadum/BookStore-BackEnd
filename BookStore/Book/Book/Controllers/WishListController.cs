@@ -17,7 +17,7 @@ namespace Book.Controllers
 
         [Route("AddWishList")]
         [HttpPost]
-        public HttpResponseMessage AddAddress(WishlistModel wish)
+        public HttpResponseMessage AddToWishlist(WishlistModel wish)
         {
             try
             {
@@ -37,6 +37,34 @@ namespace Book.Controllers
             }
             catch (Exception ex)
             {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+            }
+        }
+        [HttpDelete]
+        public HttpResponseMessage DeletefromWishlist(int id, int userId)
+        {
+            try
+            {
+                var wishlist = session.Get<WishlistModel>(id);
+
+                if (wishlist.UserId == userId)
+                {
+                    using (ITransaction transaction = session.BeginTransaction())
+                    {
+                        session.Delete(wishlist);
+                        transaction.Commit();
+                        return Request.CreateResponse(HttpStatusCode.OK, " deleted from wish list");
+                    }
+
+                }
+                else
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Error !");
+                }
+            }
+            catch (Exception ex)
+            {
+
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
         }
