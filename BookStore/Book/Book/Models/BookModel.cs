@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,5 +18,6 @@ namespace Book.Models
         public virtual string Description { get; set; }
         public virtual string BookImage { get; set; }
         public virtual int BookQuantity { get; set; }
+        
     }
 }

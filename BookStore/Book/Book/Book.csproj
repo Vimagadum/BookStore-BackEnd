@@ -227,6 +227,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\BookController.cs" />
+    <Compile Include="Controllers\CartsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -234,12 +235,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\BookModel.cs" />
+    <Compile Include="Models\CartModel.cs" />
     <Compile Include="Models\ForgotPasswordModel.cs" />
     <Compile Include="Models\jwt.cs" />
     <Compile Include="Models\MSMQ.cs" />
     <Compile Include="Models\OpenSessionsss.cs" />
     <Compile Include="Models\ResetPassword.cs" />
-    <Compile Include="Models\UpdateBookModel.cs" />
     <Compile Include="Models\UserLogin.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -252,7 +253,6 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="DAL\nh.configuration.xml" />
     <Content Include="DAL\user.mapping.xml" />
-    <Content Include="DAL\book.mapping.xml" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

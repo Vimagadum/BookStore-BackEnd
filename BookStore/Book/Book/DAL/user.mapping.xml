@@ -9,6 +9,39 @@
 		<property name="Email" />
 		<property name="Password" />
 		<property name="MobileNumber" />
+
+
 	</class>
-	
+	<class name="BookModel" table="Book" dynamic-update="true">
+		<cache usage="read-write" />
+		<id name="BookId" column="BookId" type="int">
+			<generator class="native" />
+		</id>
+		<property name="BookName" />
+		<property name="AuthorName" />
+		<property name="Rating" />
+		<property name="RatingCount" />
+		<property name="DiscountPrice" />
+		<property name="ActualPrice" />
+		<property name="Description" />
+		<property name="BookImage" />
+		<property name="BookQuantity" />
+
+
+	</class>
+	<class name="CartModel" table="CartsTable" dynamic-update="true">
+		<cache usage="read-write" />
+		<id name="CartId" column="CartId" type="int">
+			<generator class="native" />
+		</id>
+		<property name="OrderQuantity"/>
+		<property name="UserId"/>
+		<property name="BookId"/>
+		<!--<set name="BookModel" inverse="true" cascade="all">
+			<key column="CartId" />
+			<one-to-many class="BookModel" />
+		</set>-->
+
+	</class>
+
 </hibernate-mapping>
