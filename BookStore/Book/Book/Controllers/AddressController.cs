@@ -108,5 +108,11 @@ namespace Book.Controllers
             List<AddressModel> Address = session.Query<AddressModel>().ToList();
             return Address;
         }
+        [HttpGet]
+        public AddressModel getAddress(int id)
+        {
+            var address = session.Get<AddressModel>(id);
+            return address;
+        }
     }
 }
