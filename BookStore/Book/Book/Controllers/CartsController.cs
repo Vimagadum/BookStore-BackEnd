@@ -78,5 +78,37 @@ namespace Book.Controllers
             var cart = session.Get<CartModel>(id);
             return cart;
         }
+
+        [HttpPut]
+        public HttpResponseMessage UpdateCart(int cartId, CartModel cartModel)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var cart = session.Get<CartModel>(cartId);
+                    cart.OrderQuantity = cartModel.OrderQuantity;
+                    cart.UserId = cartModel.UserId;
+                    cart.BookId = cartModel.BookId;
+
+
+                    using (ITransaction transaction = session.BeginTransaction())
+                    {
+                        session.SaveOrUpdate(cart);
+                        transaction.Commit();
+                    }
+                    return Request.CreateResponse(HttpStatusCode.OK, cart);
+                }
+                else
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Error !");
+                }
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+            }
+        }
+
     }
 }
