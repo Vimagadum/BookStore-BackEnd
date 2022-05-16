@@ -38,6 +38,31 @@ namespace Book.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
         }
-        
+        [HttpDelete]
+        public HttpResponseMessage DeleteBook(int id)
+        {
+            try
+            {
+                var cart = session.Get<CartModel>(id);
+                if (cart != null)
+                {
+                    using (ITransaction transaction = session.BeginTransaction())
+                    {
+                        session.Delete(cart);
+                        transaction.Commit();
+                    }
+                    return Request.CreateResponse(HttpStatusCode.OK, "cart deleted Successfully");
+                }
+                else
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Error !");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+            }
+        }
     }
 }
