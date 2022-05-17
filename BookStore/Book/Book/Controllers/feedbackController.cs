@@ -98,6 +98,20 @@ namespace Book.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
         }
-        
+        [HttpGet]
+        public List<feedbackModel> getfeedbacklist(int BookId)
+        {
+            List<feedbackModel> newfeedbacklist = new List<feedbackModel>();
+            List<feedbackModel> feedbackLists = session.Query<feedbackModel>().ToList();
+            foreach (var feedback in feedbackLists)
+            {
+                if (feedback.BookId == BookId)
+                {
+                    newfeedbacklist.Add(feedback);
+                }
+            }
+
+            return newfeedbacklist;
+        }
     }
 }
