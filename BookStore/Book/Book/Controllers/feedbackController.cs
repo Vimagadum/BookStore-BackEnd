@@ -41,7 +41,7 @@ namespace Book.Controllers
             }
         }
         [HttpPut]
-        public HttpResponseMessage UpdateBook(int FeedbackId, feedbackModel feed)
+        public HttpResponseMessage Updatefeedback(int FeedbackId, feedbackModel feed)
         {
             try
             {
@@ -59,8 +59,6 @@ namespace Book.Controllers
                         transaction.Commit();
                     }
                     return Request.CreateResponse(HttpStatusCode.OK, feedback);
-
-
                 }
                 else
                 {
@@ -72,5 +70,34 @@ namespace Book.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
         }
+        [HttpDelete]
+        public HttpResponseMessage Deletefeedback(int FeedbackId, int userId)
+        {
+            try
+            {
+                var feedbacklist = session.Get<feedbackModel>(FeedbackId);
+
+                if (feedbacklist.UserId == userId)
+                {
+                    using (ITransaction transaction = session.BeginTransaction())
+                    {
+                        session.Delete(feedbacklist);
+                        transaction.Commit();
+                        return Request.CreateResponse(HttpStatusCode.OK, " deleted feed back");
+                    }
+
+                }
+                else
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Error !");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+            }
+        }
+        
     }
 }
