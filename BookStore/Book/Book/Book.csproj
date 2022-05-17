@@ -229,6 +229,7 @@
     <Compile Include="Controllers\AddressController.cs" />
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\CartsController.cs" />
+    <Compile Include="Controllers\feedbackController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -241,6 +242,7 @@
     <Compile Include="Models\AddressTypeModel.cs" />
     <Compile Include="Models\BookModel.cs" />
     <Compile Include="Models\CartModel.cs" />
+    <Compile Include="Models\feedbackModel.cs" />
     <Compile Include="Models\ForgotPasswordModel.cs" />
     <Compile Include="Models\jwt.cs" />
     <Compile Include="Models\MSMQ.cs" />

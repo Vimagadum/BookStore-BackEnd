@@ -12,7 +12,7 @@ namespace Book.Controllers
     public class CartsController : ApiController
     {
         ISession session = OpenSessionsss.OpenSession();
-
+        [Route("add")]
         [HttpPost]
         public HttpResponseMessage AddToCart(CartModel cart)
         {
@@ -37,6 +37,7 @@ namespace Book.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
         }
+        [Route("remove")]
         [HttpDelete]
         public HttpResponseMessage DeleteCart(int id, int userId)
         {
@@ -65,22 +66,32 @@ namespace Book.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
         }
-        //[Route("get")]
-        [HttpGet]
-        public List<CartModel> GetCartList()
-        {
-            List<CartModel> Cart = session.Query<CartModel>().ToList();
-            return Cart;
-        }
+        //[Route("getall")]
+        //[HttpGet]
+        //public List<CartModel> GetCartList()
+        //{
+        //    List<CartModel> Cart = session.Query<CartModel>().ToList();
+        //    return Cart;
+        //}
 
-        //[Route("get")]
+        [Route("list")]
         [HttpGet]
-        public CartModel getCart(int id)
+        public List<CartModel> getcarts(int userId)
         {
-            var cart = session.Get<CartModel>(id);
-            return cart;
-        }
+            List<CartModel> newCartmodel = new List<CartModel>();
+            List<CartModel> CartModels = session.Query<CartModel>().ToList();
+            foreach (var cart in CartModels)
+            {
+                if (cart.UserId == userId)
+                {
+                    newCartmodel.Add(cart);
+                }
+            }
 
+            return newCartmodel;
+
+        }
+        [Route("update")]
         [HttpPut]
         public HttpResponseMessage UpdateCart(int cartId, CartModel cartModel)
         {

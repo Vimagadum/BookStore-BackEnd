@@ -61,7 +61,7 @@
 		</id>
 		<property name="UserId"/>
 		<property name="bookId"/>
-		
+
 	</class>
 	<class name="OrderModel" table="Orders" dynamic-update="true">
 		<cache usage="read-write" />
@@ -74,6 +74,18 @@
 		<property name="UserId"/>
 		<property name="BookId"/>
 		<property name="AddressId"/>
+
+	</class>
+	<class name="feedbackModel" table="Feedback" dynamic-update="true">
+		<cache usage="read-write" />
+		<id name="FeedbackId" column="FeedbackId" type="int">
+			<generator class="native" />
+		</id>
+		<property name="Comment"/>
+		<property name="Rating"/>
+		<property name="UserId"/>
+		<property name="BookId"/>
+		
 
 	</class>
 

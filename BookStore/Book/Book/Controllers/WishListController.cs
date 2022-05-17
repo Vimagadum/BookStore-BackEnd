@@ -69,10 +69,19 @@ namespace Book.Controllers
             }
         }
         [HttpGet]
-        public WishlistModel getwishlist(int id)
+        public List<WishlistModel> getwishlist(int userId)
         {
-            var wish = session.Get<WishlistModel>(id);
-            return wish;
+            List<WishlistModel> newwishlist = new List<WishlistModel>();
+            List<WishlistModel> WishLists = session.Query<WishlistModel>().ToList();
+            foreach (var wishlist in WishLists)
+            {
+                if (wishlist.UserId == userId)
+                {
+                    newwishlist.Add(wishlist);
+                }
+            }
+
+            return newwishlist;
         }
     }
 }
